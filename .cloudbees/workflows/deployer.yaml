@@ -24,7 +24,7 @@ jobs:
 
   deploy-database:
     if: ${{ fromJSON(inputs.manifest)['ecommerce-database'].deploy }}
-    uses: dnarlakanti-IN-297/ecommerce-database/.cloudbees/workflows/deploy.yaml
+    uses: dnarlakanti-IN-297/ecommerce-database-urp/.cloudbees/workflows/deploy.yaml
     with:
       artifact-id: latest
       environment: ${{ inputs.environment }}
@@ -34,7 +34,7 @@ jobs:
   deploy-backend:
     needs: deploy-database
     if: ${{ fromJSON(inputs.manifest)['ecommerce-backend'].deploy }}
-    uses: dnarlakanti-IN-297/ecommerce-backend/.cloudbees/workflows/deploy.yaml
+    uses: dnarlakanti-IN-297/ecommerce-backend-urp/.cloudbees/workflows/deploy.yaml
     with:
       artifact-id: latest
       environment: ${{ inputs.environment }}
@@ -44,7 +44,7 @@ jobs:
   deploy-frontend:
     needs: deploy-backend
     if: ${{ fromJSON(inputs.manifest)['ecommerce-frontend'].deploy }}
-    uses: dnarlakanti-IN-297/ecommerce-frontend/.cloudbees/workflows/deploy.yaml
+    uses: dnarlakanti-IN-297/ecommerce-frontend-urp/.cloudbees/workflows/deploy.yaml
     with:
       artifact-id: latest
       environment: ${{ inputs.environment }}
